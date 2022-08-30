@@ -1,3 +1,4 @@
+"""
 import discord
 from discord.ext import commands
 
@@ -50,3 +51,4 @@ class Role(commands.Cog):
 
 async def setup(bot):
     await bot.add_cog(Role(bot))
+"""
