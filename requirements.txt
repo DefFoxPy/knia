@@ -1,0 +1,3 @@
+requests==2.23.0
+discord-easy-commands==0.1.1
+discord.py @ git+https://github.com/Rapptz/discord.py@f5e307488663360bdfa8aa00356b17926b872335
