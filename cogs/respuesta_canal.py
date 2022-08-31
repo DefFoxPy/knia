@@ -33,7 +33,7 @@ class Respuesta(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 30, commands.BucketType.user)
-    async def respuesta(self, ctx, *, mensaje:str):
+    async def respuesta(self, ctx, *, mensaje:str = ''):
         # informacion del emisor del mensaje
         member = ctx.author
         name  = member.display_name
