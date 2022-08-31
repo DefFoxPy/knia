@@ -38,26 +38,32 @@ class Respuesta(commands.Cog):
         member = ctx.author
         name  = member.display_name
         pfp = member.display_avatar
+
         try:
             await ctx.message.delete()
-            for rol in member.roles:
-                if rol.id == self.ROL:
-                    #creacion del embed con los datos del mensaje
-                    embed = discord.Embed(
-                        title='respuesta',
-                        description = mensaje,
-                        color = discord.Color.red())
-                    embed.set_author(name=f'{name}')
-                    embed.set_thumbnail(url=f'{member.display_avatar}')
-                    embed.add_field(name='tag', value=member.mention)
+        except:
+            await ctx.send('No tengo permisos para eliminar un mensaje', delete_after=15)
 
+        for rol in member.roles:
+            if rol.id == self.ROL:
+                #creacion del embed con los datos del mensaje
+                embed = discord.Embed(
+                    title='respuesta',
+                    description = mensaje,
+                    color = discord.Color.red())
+                embed.set_author(name=f'{name}')
+                embed.set_thumbnail(url=f'{member.display_avatar}')
+                embed.add_field(name='tag', value=member.mention)
+
+                try:
                     channel = self.bot.get_channel(self.RESPUESTAS_ID)
                     await channel.send(embed=embed)
                     await ctx.send(f'Su respuesta ha sido registrada {member.mention}')
                     return
-            await ctx.send(f'No cuentas con el rol de eventos para participar {member.mention}', delete_after = 10)
-        except:
-            await ctx.send('No se pudo encontra el canal', delete_after = 10)
-
+                except:
+                    await ctx.send(f'No tengo acceso al canal {self.RESPUESTAS_ID} o no existe', delete_after=15)
+            
+        await ctx.send(f'No cuentas con el rol de eventos para participar {member.mention}', delete_after = 10)
+  
 async def setup(bot):
     await bot.add_cog(Respuesta(bot))
