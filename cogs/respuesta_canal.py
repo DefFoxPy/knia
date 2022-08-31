@@ -63,6 +63,7 @@ class Respuesta(commands.Cog):
                     return
                 except:
                     await ctx.send(f'No tengo acceso al canal {self.RESPUESTAS_ID} o no existe')
+                    return
             
         await ctx.send(f'No cuentas con el rol de eventos para participar {member.mention}')
   
