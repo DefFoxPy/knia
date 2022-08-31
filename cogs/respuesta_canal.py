@@ -39,6 +39,10 @@ class Respuesta(commands.Cog):
         name  = member.display_name
         pfp = member.display_avatar
 
+        if message == '':
+            await ctx.send('El usuario no ha ingresado ninguna respuesta')
+            return
+
         try:
             await ctx.message.delete()
         except:
