@@ -33,20 +33,16 @@ class Respuesta(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 30, commands.BucketType.user)
-    async def respuesta(self, ctx, *, mensaje:str = ''):
+    async def respuesta(self, ctx, *, mensaje:str):
         # informacion del emisor del mensaje
         member = ctx.author
         name  = member.display_name
         pfp = member.display_avatar
 
-        if message == '' or message == None:
-            await ctx.send('El usuario no ha ingresado ninguna respuesta')
-            return
-
         try:
             await ctx.message.delete()
         except:
-            await ctx.send('No tengo permisos para eliminar un mensaje')
+            await ctx.send('No tengo permisos para eliminar un mensaje', delete_after=20)
             return
 
         for rol in member.roles:
@@ -63,13 +59,13 @@ class Respuesta(commands.Cog):
                 try:
                     channel = self.bot.get_channel(self.RESPUESTAS_ID)
                     await channel.send(embed=embed)
-                    await ctx.send(f'Su respuesta ha sido registrada {member.mention}')
+                    await ctx.send(f'Su respuesta ha sido registrada {member.mention}, está en espera a que un moderador la revise')
                     return
                 except:
-                    await ctx.send(f'No tengo acceso al canal {self.RESPUESTAS_ID} o no existe')
+                    await ctx.send(f'No tengo acceso al canal {self.RESPUESTAS_ID} o no existe', delete_after=20)
                     return
             
-        await ctx.send(f'No cuentas con el rol de eventos para participar {member.mention}')
+        await ctx.send(f'No cuentas con el rol de eventos para participar {member.mention}', delete_after=20)
   
 async def setup(bot):
     await bot.add_cog(Respuesta(bot))
