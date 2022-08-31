@@ -43,6 +43,7 @@ class Respuesta(commands.Cog):
             await ctx.message.delete()
         except:
             await ctx.send('No tengo permisos para eliminar un mensaje', delete_after=15)
+            return
 
         for rol in member.roles:
             if rol.id == self.ROL:
