@@ -32,7 +32,7 @@ class Respuesta(commands.Cog):
         await ctx.reply('ID del rol actualizado')
 
     @commands.command()
-    @commands.cooldown(1, 15, commands.BucketType.user)
+    @commands.cooldown(1, 30, commands.BucketType.user)
     async def respuesta(self, ctx, *, mensaje:str):
         # informacion del emisor del mensaje
         member = ctx.author
@@ -42,7 +42,7 @@ class Respuesta(commands.Cog):
         try:
             await ctx.message.delete()
         except:
-            await ctx.send('No tengo permisos para eliminar un mensaje', delete_after=15)
+            await ctx.send('No tengo permisos para eliminar un mensaje')
             return
 
         for rol in member.roles:
@@ -62,9 +62,9 @@ class Respuesta(commands.Cog):
                     await ctx.send(f'Su respuesta ha sido registrada {member.mention}')
                     return
                 except:
-                    await ctx.send(f'No tengo acceso al canal {self.RESPUESTAS_ID} o no existe', delete_after=15)
+                    await ctx.send(f'No tengo acceso al canal {self.RESPUESTAS_ID} o no existe')
             
-        await ctx.send(f'No cuentas con el rol de eventos para participar {member.mention}', delete_after = 10)
+        await ctx.send(f'No cuentas con el rol de eventos para participar {member.mention}')
   
 async def setup(bot):
     await bot.add_cog(Respuesta(bot))
