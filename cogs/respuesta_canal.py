@@ -59,7 +59,7 @@ class Respuesta(commands.Cog):
                 try:
                     channel = self.bot.get_channel(self.RESPUESTAS_ID)
                     await channel.send(embed=embed)
-                    await ctx.send(f'Su respuesta ha sido registrada {member.mention}, está en espera a que un moderador la revise')
+                    await ctx.send(f'Gracias {member.mention}.\nTu respuesta del evento será revisada por un staff ahora mismo!')
                     return
                 except:
                     await ctx.send(f'No tengo acceso al canal {self.RESPUESTAS_ID} o no existe', delete_after=20)
