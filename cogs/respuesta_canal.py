@@ -39,7 +39,7 @@ class Respuesta(commands.Cog):
         name  = member.display_name
         pfp = member.display_avatar
 
-        if message == '':
+        if message == '' or message == None:
             await ctx.send('El usuario no ha ingresado ninguna respuesta')
             return
 
