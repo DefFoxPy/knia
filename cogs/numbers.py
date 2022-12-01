@@ -12,7 +12,6 @@ class Numbers(commands.Cog):
         print('Numbers cod loaded.')
 
     @commands.command()
-    @commands.has_permissions(administrator=True)
     async def facts(self, ctx, number):
         ''' Usando una API para obtener datos curiosos sobre los números '''
         response = requests.get(f'http://numbersapi.com/{number}')
