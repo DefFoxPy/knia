@@ -12,7 +12,7 @@ class Questions(commands.Cog):
 	async def on_ready(self):
 		print('Questions cod loaded.')
 
-	@commands.command()
+	@commands.command()  # comando importante para poder sincronizar todas las operaciones
 	async def sync(self, ctx) -> None:
 		fmt = await ctx.bot.tree.sync(guild=ctx.guild)
 		await ctx.send(f'Synced {len(fmt)} commands.')
