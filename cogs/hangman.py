@@ -1,4 +1,5 @@
 import discord
+import random
 from discord.ext import commands, tasks
 from discord_buttons_plugin import *
 import threading
@@ -87,7 +88,7 @@ async def hangman_command(ctx, user1, user2, channel):
         'author': ctx.author.id,
         'player1': user1.id,
         'player2': user2.id,
-        'turn': 1,
+        'turn': random.randint(0, 1),
         'channel': channel,
         'word': word.lower(),
         'letters': [],
@@ -176,5 +177,6 @@ class Hangman(commands.Cog):
                 await interaction.message.delete()
                 await interaction.channel.send('Game has been stopped')
     '''
+
 async def setup(bot):
     await bot.add_cog(Hangman(bot))
